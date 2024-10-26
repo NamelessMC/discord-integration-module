@@ -76,12 +76,11 @@ class DiscordWidget extends \WidgetBase implements \HasWidgetSettings {
 
     public function handleSettingsRequest(
         \Cache $cache,
-        \Language $language,
         \Smarty $smarty,
+        \Language $language,
         &$success,
         &$errors
-    ): void
-    {
+    ): void {
         $cache->setCache('social_media');
 
         if (\Input::exists()) {
