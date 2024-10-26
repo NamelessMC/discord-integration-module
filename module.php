@@ -13,7 +13,7 @@ return [
             ],
         ]),
     (new Extend\DebugInfo)
-        ->provide(\NamelessMC\DiscordIntegration\DebugInfoProvider::class)
+        ->provide(\NamelessMC\DiscordIntegration\DebugInfoProvider::class),
     (new Extend\Events)
         ->register(\NamelessMC\DiscordIntegration\Events\DiscordWebhookFormatterEvent::class),
     (new Extend\Widgets)
