@@ -2,7 +2,7 @@
 
 namespace NamelessMC\DiscordIntegration;
 
-class DebugInfoProvider implements \NamelessMC\Framework\Debugging\DebugInfoProvider
+class DebugInfoProvider extends \NamelessMC\Framework\Debugging\DebugInfoProvider
 {
     public function provide(): array
     {
