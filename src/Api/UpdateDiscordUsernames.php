@@ -2,6 +2,7 @@
 
 namespace NamelessMC\DiscordIntegration\Api;
 
+use NamelessMC\DiscordIntegration\DiscordUtils;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -42,6 +43,6 @@ class UpdateDiscordUsernames extends \KeyAuthEndpoint {
             $api->throwError(DiscordApiErrors::ERROR_UNABLE_TO_SET_DISCORD_BOT_USERNAME, $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
-        $api->returnArray(['message' => Discord::getLanguageTerm('discord_usernames_updated'), 'updated_users' => $updated]);
+        $api->returnArray(['message' => DiscordUtils::getLanguageTerm('discord_usernames_updated'), 'updated_users' => $updated]);
     }
 }

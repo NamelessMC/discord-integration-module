@@ -33,7 +33,7 @@ class DiscordWidget extends \WidgetBase implements \HasWidgetSettings {
         // Generate HTML code for widget
         // If there is no Guild ID set, display error message
         if ($this->_guild_id === null) {
-            $this->_content = Discord::getLanguageTerm('discord_widget_disabled');
+            $this->_content = DiscordUtils::getLanguageTerm('discord_widget_disabled');
             return;
         }
 
@@ -45,7 +45,7 @@ class DiscordWidget extends \WidgetBase implements \HasWidgetSettings {
         } else {
             $request = \HttpClient::get('https://discord.com/api/guilds/' . urlencode($this->_guild_id) . '/widget.json');
             if ($request->hasError()) {
-                $this->_content = Discord::getLanguageTerm('discord_widget_error', [
+                $this->_content = DiscordUtils::getLanguageTerm('discord_widget_error', [
                     'error' => $request->getError()
                 ]);
                 return;
@@ -60,7 +60,7 @@ class DiscordWidget extends \WidgetBase implements \HasWidgetSettings {
         // Check if the widget is disabled.
         if (!isset($result->channels) || isset($result->code)) {
             // Yes, it is: display message
-            $this->_content = Discord::getLanguageTerm('discord_widget_disabled');
+            $this->_content = DiscordUtils::getLanguageTerm('discord_widget_disabled');
 
         } else {
             // No, it isn't: display the widget
@@ -108,7 +108,7 @@ class DiscordWidget extends \WidgetBase implements \HasWidgetSettings {
         }
 
         $smarty->assign([
-            'DISCORD_THEME' => Discord::getLanguageTerm('discord_widget_theme'),
+            'DISCORD_THEME' => DiscordUtils::getLanguageTerm('discord_widget_theme'),
             'DISCORD_THEME_VALUE' => $discord_theme,
             'SETTINGS_TEMPLATE' => 'discord_integration/widgets/discord.tpl',
             'DARK' => $language->get('admin', 'dark'),

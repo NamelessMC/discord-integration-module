@@ -59,11 +59,11 @@ class DiscordGroupSyncInjector implements \GroupSyncInjector, \BatchableGroupSyn
         ];
     }
 
-    public function getValidationMessages(Language $language): array {
+    public function getValidationMessages(\Language $language): array {
         return [
-            \Validate::MIN => Discord::getLanguageTerm('discord_role_id_length', ['min' => 18, 'max' => 20]),
-            \Validate::MAX => Discord::getLanguageTerm('discord_role_id_length', ['min' => 18, 'max' => 20]),
-            \Validate::NUMERIC => Discord::getLanguageTerm('discord_role_id_numeric'),
+            \Validate::MIN => DiscordUtils::getLanguageTerm('discord_role_id_length', ['min' => 18, 'max' => 20]),
+            \Validate::MAX => DiscordUtils::getLanguageTerm('discord_role_id_length', ['min' => 18, 'max' => 20]),
+            \Validate::NUMERIC => DiscordUtils::getLanguageTerm('discord_role_id_numeric'),
         ];
     }
 

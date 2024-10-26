@@ -32,6 +32,6 @@ class SyncDiscordRolesEndpoint extends \KeyAuthEndpoint {
             \Log::getInstance()->log(\Log::Action('discord/role_set'), json_encode($log_array), $user->data()->id);
         }
 
-        $api->returnArray(array_merge(['message' => Discord::getLanguageTerm('group_updated')], $log_array));
+        $api->returnArray(array_merge(['message' => DiscordUtils::getLanguageTerm('group_updated')], $log_array));
     }
 }

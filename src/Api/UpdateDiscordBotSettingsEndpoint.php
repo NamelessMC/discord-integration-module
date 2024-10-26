@@ -56,6 +56,6 @@ class UpdateDiscordBotSettingsEndpoint extends \KeyAuthEndpoint {
             \Settings::set('discord_bot_user_id', $_POST['bot_user_id']);
         }
 
-        $api->returnArray(['message' => Discord::getLanguageTerm('discord_settings_updated')]);
+        $api->returnArray(['message' => DiscordUtils::getLanguageTerm('discord_settings_updated')]);
     }
 }

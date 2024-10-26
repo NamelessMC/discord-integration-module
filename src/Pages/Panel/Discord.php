@@ -51,17 +51,17 @@ class Discord extends PanelPage
                         ]
                     ])->messages([
                         'discord_guild_id' => [
-                            \Validate::MIN => Discord::getLanguageTerm('discord_id_length', ['min' => 18, 'max' => 20]),
-                            \Validate::MAX => Discord::getLanguageTerm('discord_id_length', ['min' => 18, 'max' => 20]),
-                            \Validate::NUMERIC => Discord::getLanguageTerm('discord_id_numeric'),
-                            \Validate::REQUIRED => Discord::getLanguageTerm('discord_id_required'),
+                            \Validate::MIN => DiscordUtils::getLanguageTerm('discord_id_length', ['min' => 18, 'max' => 20]),
+                            \Validate::MAX => DiscordUtils::getLanguageTerm('discord_id_length', ['min' => 18, 'max' => 20]),
+                            \Validate::NUMERIC => DiscordUtils::getLanguageTerm('discord_id_numeric'),
+                            \Validate::REQUIRED => DiscordUtils::getLanguageTerm('discord_id_required'),
                         ]
                     ]);
         
                     if ($validation->passed()) {
                         \Settings::set('discord', \Input::get('discord_guild_id'));
         
-                        $success = Discord::getLanguageTerm('discord_settings_updated');
+                        $success = DiscordUtils::getLanguageTerm('discord_settings_updated');
         
                     } else {
                         $errors = $validation->errors();
@@ -71,7 +71,7 @@ class Discord extends PanelPage
                     // Either enable or disable Discord integration
                     if ($_POST['enable_discord'] === '1') {
                         if (DiscordUtils::botUrl() == '' || DiscordUtils::botUsername() == '' || Discord::getGuildId() == '') {
-                            $errors[] = Discord::getLanguageTerm('discord_bot_must_be_setup', [
+                            $errors[] = DiscordUtils::getLanguageTerm('discord_bot_must_be_setup', [
                                 'linkStart' => '<a href="https://github.com/NamelessMC/Nameless-Link/wiki/Setup" target="_blank">',
                                 'linkEnd' => '</a>',
                             ]);
@@ -85,7 +85,7 @@ class Discord extends PanelPage
                 }
         
                 if (!count($errors)) {
-                    \Session::flash('discord_success', Discord::getLanguageTerm('discord_settings_updated'));
+                    \Session::flash('discord_success', DiscordUtils::getLanguageTerm('discord_settings_updated'));
                     \Redirect::to(\URL::build('/panel/discord'));
                 }
             } else {
@@ -128,14 +128,14 @@ class Discord extends PanelPage
             // 'PARENT_PAGE' => PARENT_PAGE,
             'DASHBOARD' => $this->coreLanguage->get('admin', 'dashboard'),
             'INTEGRATIONS' => $this->coreLanguage->get('admin', 'integrations'),
-            'DISCORD' => Discord::getLanguageTerm('discord'),
+            'DISCORD' => DiscordUtils::getLanguageTerm('discord'),
             //'PAGE' => PANEL_PAGE,
             'INFO' => $this->coreLanguage->get('general', 'info'),
             'TOKEN' => \Token::get(),
             'SUBMIT' => $this->coreLanguage->get('general', 'submit'),
-            'ENABLE_DISCORD_INTEGRATION' => Discord::getLanguageTerm('enable_discord_integration'),
+            'ENABLE_DISCORD_INTEGRATION' => DiscordUtils::getLanguageTerm('enable_discord_integration'),
             'DISCORD_ENABLED' => DiscordUtils::isBotSetup(),
-            'INVITE_LINK' => Discord::getLanguageTerm('discord_invite_info', [
+            'INVITE_LINK' => DiscordUtils::getLanguageTerm('discord_invite_info', [
                 'inviteLinkStart' => '<a target="_blank" href="https://namelessmc.com/discord-bot-invite">',
                 'inviteLinkEnd' => '</a>',
                 'command' => '<code>/configure link</code>',
@@ -146,20 +146,13 @@ class Discord extends PanelPage
             'BOT_URL_SET' => (DiscordUtils::botUrl() != ''),
             'BOT_USERNAME_SET' => (DiscordUtils::botUsername() != ''),
             'REQUIREMENTS' => rtrim($this->coreLanguage->get('installer', 'requirements'), ':'),
-            'BOT_SETUP' => Discord::getLanguageTerm('discord_bot_setup'),
-            'DISCORD_GUILD_ID' => Discord::getLanguageTerm('discord_guild_id'),
+            'BOT_SETUP' => DiscordUtils::getLanguageTerm('discord_bot_setup'),
+            'DISCORD_GUILD_ID' => DiscordUtils::getLanguageTerm('discord_guild_id'),
             'DISCORD_GUILD_ID_VALUE' => DiscordUtils::getGuildId(),
-            'ID_INFO' => Discord::getLanguageTerm('discord_id_help', [
+            'ID_INFO' => DiscordUtils::getLanguageTerm('discord_id_help', [
                 'linkStart' => '<a href="https://support.discord.com/hc/en-us/articles/206346498" target="_blank">',
                 'linkEnd' => '</a>',
             ]),
-        ]);
-        
-        // $template->onPageLoad();
-        
-        // require(ROOT_PATH . '/core/templates/panel_navbar.php');
-        
-        // Display template
-        // $template->displayTemplate('integrations/discord/discord.tpl', $this->smarty);        
+        ]);       
     }
 }

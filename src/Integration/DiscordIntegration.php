@@ -40,7 +40,7 @@ class DiscordIntegration extends \IntegrationBase implements \HasIntegrationSett
             $integrationUser = new \IntegrationUser($this);
             $integrationUser->linkIntegration($user, null, null, false, $token);
 
-            \Session::flash('connections_success', Discord::getLanguageTerm('discord_id_confirm', ['token' => $token]));
+            \Session::flash('connections_success', DiscordUtils::getLanguageTerm('discord_id_confirm', ['token' => $token]));
         }
     }
 
@@ -52,7 +52,7 @@ class DiscordIntegration extends \IntegrationBase implements \HasIntegrationSett
             'code' => $token
         ]);
 
-        \Session::flash('connections_success', \Discord::getLanguageTerm('discord_id_confirm', ['token' => $token]));
+        \Session::flash('connections_success', DiscordUtils::getLanguageTerm('discord_id_confirm', ['token' => $token]));
     }
 
     public function onUnlinkRequest(\User $user) {
@@ -211,8 +211,8 @@ class DiscordIntegration extends \IntegrationBase implements \HasIntegrationSett
 
         $smarty->assign([
             'OAUTH' => $language->get('admin', 'oauth'),
-            'DISCORD_BOT' => Discord::getLanguageTerm('discord_bot'),
-            'LINK_METHOD' => Discord::getLanguageTerm('link_method'),
+            'DISCORD_BOT' => DiscordUtils::getLanguageTerm('discord_bot'),
+            'LINK_METHOD' => DiscordUtils::getLanguageTerm('link_method'),
             'LINK_METHOD_VALUE' => \Settings::get('integration_link_method', 'bot', 'Discord Integration'),
             'SETTINGS_TEMPLATE' => 'integrations/discord/integration_settings.tpl'
         ]);

@@ -32,6 +32,6 @@ class SubmitDiscordRoleListEndpoint extends \KeyAuthEndpoint {
             $api->throwError(DiscordApiErrors::ERROR_UNABLE_TO_UPDATE_DISCORD_ROLES, $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
-        $api->returnArray(['message' => Discord::getLanguageTerm('discord_settings_updated')]);
+        $api->returnArray(['message' => DiscordUtils::getLanguageTerm('discord_settings_updated')]);
     }
 }
