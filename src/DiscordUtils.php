@@ -103,6 +103,21 @@ class DiscordUtils
     }
 
     /**
+     * Get a language term for the Discord Integration module.
+     *
+     * @param string $term Term to search for
+     * @param array $variables Variables to replace in the term
+     * @return string Language term from the language file
+     */
+    public static function getLanguageTerm(string $term, array $variables = []): string {
+        if (!isset(self::$_discord_integration_language)) {
+            self::$_discord_integration_language = \Illuminate\Container\Container::getInstance()->get('discord_integrationLanguage');
+        }
+
+        return self::$_discord_integration_language->get('discord_integration', $term, $variables);
+    }
+
+    /**
      * Get the associated NamelessMC group ID for a Discord role.
      *
      * @param \DB $db Instance of DB class

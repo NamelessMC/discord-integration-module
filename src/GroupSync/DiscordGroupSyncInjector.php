@@ -34,7 +34,7 @@ class DiscordGroupSyncInjector implements \GroupSyncInjector, \BatchableGroupSyn
         return DiscordUtils::isBotSetup();
     }
 
-    public function getNotEnabledMessage(Language $language): string {
+    public function getNotEnabledMessage(\Language $language): string {
         return DiscordUtils::getLanguageTerm('discord_integration_not_setup');
     }
 
