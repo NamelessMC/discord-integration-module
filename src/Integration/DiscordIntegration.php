@@ -214,7 +214,7 @@ class DiscordIntegration extends \IntegrationBase implements \HasIntegrationSett
             'DISCORD_BOT' => DiscordUtils::getLanguageTerm('discord_bot'),
             'LINK_METHOD' => DiscordUtils::getLanguageTerm('link_method'),
             'LINK_METHOD_VALUE' => \Settings::get('integration_link_method', 'bot', 'Discord Integration'),
-            'SETTINGS_TEMPLATE' => 'integrations/discord/integration_settings.tpl'
+            'SETTINGS_TEMPLATE' => 'discord_integration/integrations/integration_settings.tpl'
         ]);
     }
 }
