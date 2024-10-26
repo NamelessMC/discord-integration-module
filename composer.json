@@ -1,0 +1,25 @@
+{
+    "name": "namelessmc/discord-integration-module",
+    "type": "nameless-module",
+    "authors": [
+        {
+            "name": "Tadhg Boyle",
+            "homepage": "https://github.com/tadhgboyle"
+        }
+    ],
+    "extra": {
+        "nameless_module": {
+            "display_name": "Discord Integration",
+            "name": "discord_integration",
+            "description": "Adds Discord integration to your website.",
+            "version": "2.1.2",
+            "nameless_version": "2.1.0"
+        }
+    },
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "NamelessMC\\DiscordIntegration\\": "src/"
+        }
+    }
+}
